@@ -1,0 +1,1 @@
+{"background_color":"#f7f5f0","description":"Never forget a name again.","display":"standalone","icons":[{"purpose":"any","sizes":"192x192","src":"/icon-192.png","type":"image/png"},{"purpose":"any","sizes":"512x512","src":"/icon-512.png","type":"image/png"}],"name":"Name Memory","short_name":"Name Memory","start_url":"/","theme_color":"#f7f5f0"}

@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #f7f5f0;
+  --color-ink2: #efede7;
+  --color-card: #ffffff;
+  --color-card2: #ffffff;
+  --color-line: #e8e6e0;
+  --color-cream: #1a1a1c;
+  --color-muted: #6e6e76;
+  --color-faint: #a8a8b0;
+  --color-accent: #3c5a76;
+  --color-accent-dim: #e2e9f0;
+  --color-leaf: #b8d94e;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: clip;
+}
+
+/* iOS Safari auto-zooms on input focus when font-size < 16px, and doesn't
+   always zoom back out. Keep all text inputs at 16px on touch devices. */
+@supports (-webkit-touch-callout: none) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* subtle, fast transitions everywhere — never sluggish or bouncy */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+.transition-fast {
+  transition: all 0.16s ease-out;
+}
+
+/* the text IS the text box: zero layout shift when editing */
+.inline-field {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  outline: none;
+  resize: none;
+  caret-color: var(--color-accent);
+  display: block;
+}
+.inline-field:focus {
+  background: rgba(60, 90, 118, 0.10);
+  border-radius: 6px;
+}
+textarea.inline-field {
+  field-sizing: content;
+  min-height: 1.5em;
+  overflow: hidden;
+}
+
+/* composer growth: 1 line → ~4 lines, then internal scroll */
+.composer-input {
+  field-sizing: content;
+  max-height: calc(1.5em * 4 + 16px);
+  overflow-y: auto;
+}
+
+/* avatar menu blooms out of the avatar */
+@keyframes bloom {
+  from { opacity: 0; transform: scale(0.7) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.bloom {
+  animation: bloom 0.18s ease-out;
+  transform-origin: top left;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.2s ease-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.rec-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+/* thin scrollbars for tag bars */
+.nice-scroll::-webkit-scrollbar { height: 4px; width: 4px; }
+.nice-scroll::-webkit-scrollbar-thumb { background: #d8d5ce; border-radius: 4px; }
+.nice-scroll { scrollbar-width: thin; }
+
+/* swipe rows */
+.swipe-row { touch-action: pan-y; }
+
+/* long-press feedback */
+.pressable { user-select: none; -webkit-user-select: none; }
+.pressable.pressing { opacity: 0.6; }
